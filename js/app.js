@@ -34,14 +34,16 @@ function shuffle(array) {
     return array;
 }
 
-// Store the shuffled array in a variable
-let shuffleResult = shuffle(array);
-// Add the shuffled icons to the page
-shuffleResult.forEach(function (element, index) {
+function resetGame() {
     "use strict";
-    const card = document.querySelectorAll('.card > i')[index];
-    card.className = element;
-});
+    // Store the shuffled array in a variable
+    let shuffleResult = shuffle(array);
+    // Add the shuffled icons to the page
+    shuffleResult.forEach(function (element, index) {
+        const card = document.querySelectorAll('.card > i')[index];
+        card.className = element;
+    });
+}
 
 
 /*
