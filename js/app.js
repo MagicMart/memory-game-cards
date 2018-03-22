@@ -9,9 +9,14 @@ const array = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bo
  *   - add each card's HTML to the page
  */
 
+
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+	"use strict";
+    let currentIndex = array.length;
+    let temporaryValue;
+    let randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
