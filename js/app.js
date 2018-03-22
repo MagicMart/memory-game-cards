@@ -54,11 +54,11 @@ function cardClick() {
     let i;
     for (i = 0; i < 16; i += 1) {
         const card = document.querySelectorAll('.card')[i];
-        card.addEventListener('click', displaySymbol);
+        card.addEventListener('click', displaySymbol);// run displaySymbol function when card is clicked
     }
 }
 
-
+// display the clicked card
 function displaySymbol(event) {
     "use strict";
     event.target.classList.add("open", "show");
