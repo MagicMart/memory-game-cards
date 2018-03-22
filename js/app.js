@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 
-const array = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle"];
+const array = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb"];
 
 /*
  * Display the cards on the page
@@ -34,7 +34,14 @@ function shuffle(array) {
     return array;
 }
 
+// Store the shuffled array in a variable
 let shuffleResult = shuffle(array);
+// Add the shuffled icons to the page
+shuffleResult.forEach(function (element, index) {
+    "use strict";
+    const card = document.querySelectorAll('.card > i')[index];
+    card.className = element;
+});
 
 
 /*
