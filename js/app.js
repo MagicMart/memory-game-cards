@@ -54,7 +54,7 @@ function cardClick() {
     let i;
     for (i = 0; i < 16; i += 1) {
         const card = document.querySelectorAll('.card')[i];
-        card.addEventListener('click', displaySymbol);// run displaySymbol function when card is clicked
+        card.addEventListener('click', displaySymbol); // run displaySymbol function when card is clicked
     }
 }
 
@@ -62,6 +62,19 @@ function cardClick() {
 function displaySymbol(event) {
     "use strict";
     event.target.classList.add("open", "show");
+    cardArray(event);
+}
+
+function cardArray(event) {
+	   "use strict";
+    let findIcon = event.target.querySelector('i');
+    let icon = findIcon.className;
+    openCards(icon);
+
+}
+
+function openCards(icon) {
+
 }
 
 
