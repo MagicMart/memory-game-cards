@@ -10,7 +10,7 @@ const array = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bo
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
+const openCardsArr = [];
 
 
 
@@ -39,7 +39,7 @@ function resetGame() {
     // Store the shuffled array in a variable
     let shuffleResult = shuffle(array);
     // Add the shuffled icons to the page
-    shuffleResult.forEach(function (element, index) {
+    shuffleResult.forEach(function(element, index) {
         const card = document.querySelectorAll('.card > i')[index];
         card.className = element;
         cardClick();
@@ -66,15 +66,21 @@ function displaySymbol(event) {
 }
 
 function cardArray(event) {
-	   "use strict";
+    "use strict";
     let findIcon = event.target.querySelector('i');
     let icon = findIcon.className;
     openCards(icon);
 
 }
 
-function openCards(icon) {
 
+function openCards(icon) {
+    "use strict";
+    openCardsArr.push(icon);
+    if (openCardsArr.length === 3) {
+        openCardsArr.shift();
+        // setTimeout(closeCard(), 3000);
+    }
 }
 
 
