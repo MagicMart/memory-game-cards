@@ -42,8 +42,23 @@ function resetGame() {
     shuffleResult.forEach(function (element, index) {
         const card = document.querySelectorAll('.card > i')[index];
         card.className = element;
+        cardClick();
     });
 }
+// Call the resetGame function for testing
+resetGame();
+
+//set up event listener for the card
+function cardClick() {
+    "use strict";
+    let i;
+    for (i = 0; i < 16; i += 1) {
+        const card = document.querySelectorAll('card')[i];
+        card.addEventListener('click', displaySymbol(event));
+    }
+}
+
+
 
 
 /*
