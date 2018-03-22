@@ -53,11 +53,16 @@ function cardClick() {
     "use strict";
     let i;
     for (i = 0; i < 16; i += 1) {
-        const card = document.querySelectorAll('card')[i];
-        card.addEventListener('click', displaySymbol(event));
+        const card = document.querySelectorAll('.card')[i];
+        card.addEventListener('click', displaySymbol);
     }
 }
 
+
+function displaySymbol(event) {
+    "use strict";
+    event.target.classList.add("open", "show");
+}
 
 
 
