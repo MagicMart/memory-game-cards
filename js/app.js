@@ -10,7 +10,7 @@ const array = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bo
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-const openCardsArr = [];
+let openCardsArr = [];
 
 
 
@@ -61,26 +61,61 @@ function cardClick() {
 // display the clicked card
 function displaySymbol(event) {
     "use strict";
-    event.target.classList.add("open", "show");
-    cardArray(event);
+    const eventTarget = event.target;
+    eventTarget.classList.add("open", "show");
+
+    cardArray(eventTarget);
 }
 
-function cardArray(event) {
+function cardArray(eventTarget) {
     "use strict";
-    let findIcon = event.target.querySelector('i');
+    let findIcon = eventTarget.querySelector('i');
     let icon = findIcon.className;
-    openCards(icon);
+    openCards(icon, eventTarget);
 
 }
 
 
-function openCards(icon) {
+function openCards(icon, eventTarget) {
     "use strict";
     openCardsArr.push(icon);
-    if (openCardsArr.length === 3) {
-        openCardsArr.shift();
-        // setTimeout(closeCard(), 3000);
+    openCardsArr.push(eventTarget);
+    //check to see if cards matc
+    if (openCardsArr.length !== 4) {
+        return;
     }
+    if (openCardsArr[0] === openCardsArr[2]) {
+        matchCards();
+        // openCardsArr.shift();
+        //  setTimeout(closeCard(), 3000);
+    } else {
+        closeCards()
+    }
+
+}
+
+function matchCards() {
+    let icon1 = openCardsArr[0];
+    let eventTarget1 = openCardsArr[1];
+    let icon2 = openCardsArr[2];
+    let eventTarget2 = openCardsArr[3];
+    eventTarget1.classList.remove("card", "open", "show");
+    eventTarget1.classList.add("card", "open", "match");
+     eventTarget2.classList.remove("card", "open", "show");
+    eventTarget2.classList.add("card", "open", "match");
+    eventTarget1.removeEventListener('click', displaySymbol);
+    eventTarget2.removeEventListener('click', displaySymbol);
+    openCardsArr = [];
+
+}
+
+function closeCards() {
+    let eventTarget1 = openCardsArr[1];
+    let eventTarget2 = openCardsArr[3];
+    eventTarget1.className = "card";
+    eventTarget2.className = "card";
+    openCardsArr = [];
+
 }
 
 
