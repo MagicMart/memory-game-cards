@@ -82,6 +82,7 @@ function openCards(icon, eventTarget) {
     openCardsArr.push(eventTarget);
     //check to see if cards matc
     if (openCardsArr.length !== 4) {
+    	eventTarget.removeEventListener('click', displaySymbol);
         return;
     }
     if (openCardsArr[0] === openCardsArr[2]) {
@@ -89,19 +90,21 @@ function openCards(icon, eventTarget) {
         // openCardsArr.shift();
         //  setTimeout(closeCard(), 3000);
     } else {
+
+    	openCardsArr[1].addEventListener('click', displaySymbol);
         closeCards()
     }
 
 }
 
 function matchCards() {
-    let icon1 = openCardsArr[0];
+    // let icon1 = openCardsArr[0];
     let eventTarget1 = openCardsArr[1];
-    let icon2 = openCardsArr[2];
+    // let icon2 = openCardsArr[2];
     let eventTarget2 = openCardsArr[3];
     eventTarget1.classList.remove("card", "open", "show");
     eventTarget1.classList.add("card", "open", "match");
-     eventTarget2.classList.remove("card", "open", "show");
+    eventTarget2.classList.remove("card", "open", "show");
     eventTarget2.classList.add("card", "open", "match");
     eventTarget1.removeEventListener('click', displaySymbol);
     eventTarget2.removeEventListener('click', displaySymbol);
