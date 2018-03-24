@@ -99,10 +99,10 @@ function matchCards() {
     let eventTarget1 = openCardsArr[1];
     // let icon2 = openCardsArr[2];
     let eventTarget2 = openCardsArr[3];
-    eventTarget1.classList.remove("card", "open", "show");
-    eventTarget1.classList.add("card", "open", "match");
-    eventTarget2.classList.remove("card", "open", "show");
-    eventTarget2.classList.add("card", "open", "match");
+    eventTarget1.classList.remove("show");
+    eventTarget1.classList.add("match");
+    eventTarget2.classList.remove("show");
+    eventTarget2.classList.add("match");
     eventTarget1.removeEventListener('click', displaySymbol);
     eventTarget2.removeEventListener('click', displaySymbol);
     openCardsArr = [];
