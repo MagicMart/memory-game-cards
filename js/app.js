@@ -82,17 +82,14 @@ function openCards(icon, eventTarget) {
     openCardsArr.push(eventTarget);
     //check to see if cards matc
     if (openCardsArr.length !== 4) {
-    	eventTarget.removeEventListener('click', displaySymbol);
+        eventTarget.removeEventListener('click', displaySymbol); // Make sure user can't match by clicking on the same square
         return;
     }
     if (openCardsArr[0] === openCardsArr[2]) {
         matchCards();
-        // openCardsArr.shift();
-        //  setTimeout(closeCard(), 3000);
     } else {
-
-    	openCardsArr[1].addEventListener('click', displaySymbol);
-        closeCards()
+        openCardsArr[1].addEventListener('click', displaySymbol); // Reintroduce event listener. See above.
+        closeCards();
     }
 
 }
