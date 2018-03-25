@@ -83,12 +83,12 @@ function whatSymbol(eventTarget) {
     let findIcon = eventTarget.querySelector('i');
     let icon = findIcon.className;
     // Send symbol and the event.target data for its card to a function
-    openCards(icon, eventTarget);
+    holdCards(icon, eventTarget);
 
 }
 
 
-function openCards(icon, eventTarget) {
+function holdCards(icon, eventTarget) {
     "use strict";
     openCardsArr.push(icon);
     openCardsArr.push(eventTarget);
