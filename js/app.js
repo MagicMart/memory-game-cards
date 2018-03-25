@@ -82,6 +82,7 @@ function whatSymbol(eventTarget) {
     "use strict";
     let findIcon = eventTarget.querySelector('i');
     let icon = findIcon.className;
+    // Send symbol and the event.target data for its card to a function
     openCards(icon, eventTarget);
 
 }
@@ -91,7 +92,7 @@ function openCards(icon, eventTarget) {
     "use strict";
     openCardsArr.push(icon);
     openCardsArr.push(eventTarget);
-    //check to see if cards matc
+    //check to see if cards match
     if (openCardsArr.length !== 4) {
         eventTarget.removeEventListener('click', displaySymbol); // Make sure user can't match by clicking on the same square
         return;
