@@ -11,6 +11,7 @@ const array = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bo
  *   - add each card's HTML to the page
  */
 let openCardsArr = [];
+let moves = 0;
 
 
 
@@ -36,6 +37,7 @@ function shuffle(array) {
 
 function resetGame() {
     "use strict";
+    moves = 0;
     // Store the shuffled array in a variable
     let shuffleResult = shuffle(array);
     // Add the shuffled icons to the page
@@ -58,13 +60,21 @@ function cardClick() {
     }
 }
 
+function moveCounter() {
+    moves += 1;
+    moveElement = document.querySelector('span');
+    moveElement.textContent = moves;
+}
+
 // display the clicked card
 function displaySymbol(event) {
     "use strict";
     const eventTarget = event.target;
     eventTarget.classList.add("open", "show");
-
+    // call move counter function
+    moveCounter();
     cardArray(eventTarget);
+
 }
 
 function cardArray(eventTarget) {
