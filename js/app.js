@@ -73,11 +73,12 @@ function displaySymbol(event) {
     eventTarget.classList.add("open", "show");
     // call move counter function
     moveCounter();
-    cardArray(eventTarget);
+    whatSymbol(eventTarget);
 
 }
 
-function cardArray(eventTarget) {
+// Find the symbol that was in the clicked card
+function whatSymbol(eventTarget) {
     "use strict";
     let findIcon = eventTarget.querySelector('i');
     let icon = findIcon.className;
