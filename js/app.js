@@ -72,7 +72,7 @@ function moveCounter() {
 // display the clicked card
 function displaySymbol(e) {
     "use strict";
-    if (e.target && e.target.nodeName === "LI" && (e.target.className !== "card open show" && e.target !== "card open match")) {
+    if ((e.target.className === "card" && e.target !== "card open match") && (e.target && e.target.nodeName === "LI")) {
 
         const eventTarget = e.target;
         // eventTarget.removeEventListener('click', displaySymbol);
