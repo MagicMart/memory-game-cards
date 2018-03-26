@@ -56,7 +56,7 @@ function cardClick() {
     let i;
     for (i = 0; i < 16; i += 1) {
         const card = document.querySelectorAll('.card')[i];
-        card.addEventListener('click', displaySymbol); // run displaySymbol function when card is clicked
+        card.addEventListener('click', displaySymbol, true); // run displaySymbol function when card is clicked
     }
 }
 
@@ -94,13 +94,13 @@ function holdCards(icon, eventTarget) {
     openCardsArr.push(eventTarget);
     //check to see if cards match
     if (openCardsArr.length !== 4) {
-        eventTarget.removeEventListener('click', displaySymbol); // Make sure user can't match by clicking on the same square
+        eventTarget.removeEventListener('click', displaySymbol, true); // Make sure user can't match by clicking on the same square
         return;
     }
     if (openCardsArr[0] === openCardsArr[2]) {
         matchCards();
     } else {
-        openCardsArr[1].addEventListener('click', displaySymbol); // Reintroduce event listener. See above.
+        openCardsArr[1].addEventListener('click', displaySymbol, true); // Reintroduce event listener. See above.
         closeCards();
     }
 
@@ -115,19 +115,27 @@ function matchCards() {
     eventTarget1.classList.add("match");
     eventTarget2.classList.remove("show");
     eventTarget2.classList.add("match");
-    eventTarget1.removeEventListener('click', displaySymbol);
-    eventTarget2.removeEventListener('click', displaySymbol);
+    eventTarget1.removeEventListener('click', displaySymbol, true);
+    eventTarget2.removeEventListener('click', displaySymbol, true);
     openCardsArr = [];
 
 }
 
 function closeCards() {
+
     let eventTarget1 = openCardsArr[1];
     let eventTarget2 = openCardsArr[3];
-    eventTarget1.className = "card";
-    eventTarget2.className = "card";
-    openCardsArr = [];
+    eventTarget1.id = "incorrect";
+    eventTarget2.id = "incorrect";
+    setTimeout(pause, 1000)
 
+    function pause() {
+        eventTarget1.className = "card";
+        eventTarget2.className = "card";
+        openCardsArr = [];
+        eventTarget1.id = "";
+        eventTarget2.id = "";
+    }
 }
 
 
