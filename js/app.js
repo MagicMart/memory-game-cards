@@ -56,7 +56,9 @@ function cardClick() {
     let i;
     for (i = 0; i < 16; i += 1) {
         const card = document.querySelectorAll('.card')[i];
-        card.addEventListener('click', displaySymbol, true); // run displaySymbol function when card is clicked
+        card.addEventListener('click', displaySymbol, true);
+        // run displaySymbol function when card is clicked
+        //true - The event handler is executed in the capturing phase
     }
 }
 
