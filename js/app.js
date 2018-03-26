@@ -17,6 +17,7 @@ let moves = 0;
 
 
 
+
 // Shuffle function from http://stackoverflow.com/a/2450976 - adapted
 function shuffle(array) {
     "use strict";
@@ -44,8 +45,8 @@ function resetGame() {
     shuffleResult.forEach(function(element, index) {
         const card = document.querySelectorAll('.card > i')[index];
         card.className = element;
-        cardClick();
     });
+    cardClick();
 }
 // Call the resetGame function for testing
 resetGame();
@@ -53,30 +54,35 @@ resetGame();
 //set up event listener for the card
 function cardClick() {
     "use strict";
-    let i;
-    for (i = 0; i < 16; i += 1) {
-        const card = document.querySelectorAll('.card')[i];
-        card.addEventListener('click', displaySymbol);
-        // run displaySymbol function when card is clicked
-        //true - The event handler is executed in the capturing phase
-    }
+
+    const deck = document.querySelector('.deck');
+    deck.addEventListener('click', displaySymbol);
+    // run displaySymbol function when card is clicked
+    //true - The event handler is executed in the capturing phase
+
 }
 
 function moveCounter() {
+    "use strict";
     moves += 1;
-    moveElement = document.querySelector('span');
+    const moveElement = document.querySelector('span');
     moveElement.textContent = moves;
 }
 
 // display the clicked card
-function displaySymbol(event) {
+function displaySymbol(e) {
     "use strict";
-    const eventTarget = event.target;
-    eventTarget.classList.add("open", "show");
-    eventTarget.removeEventListener('click', displaySymbol);
-    // call move counter function
-    moveCounter();
-    whatSymbol(eventTarget);
+    if (e.target && e.target.nodeName === "LI" && (e.target.className !== "card open show" && e.target !== "card open match")) {
+
+        const eventTarget = e.target;
+        // eventTarget.removeEventListener('click', displaySymbol);
+        eventTarget.className = "card open show";
+        whatSymbol(eventTarget);
+
+
+        // call move counter function
+        moveCounter();
+    }
 
 }
 
@@ -114,12 +120,12 @@ function matchCards() {
     let eventTarget1 = openCardsArr[1];
     // let icon2 = openCardsArr[2];
     let eventTarget2 = openCardsArr[3];
-    eventTarget1.classList.remove("show");
-    eventTarget1.classList.add("match");
-    eventTarget2.classList.remove("show");
-    eventTarget2.classList.add("match");
-    eventTarget1.removeEventListener('click', displaySymbol);
-    eventTarget2.removeEventListener('click', displaySymbol);
+    eventTarget1.className = "card open match"
+    // eventTarget1.classList.add("match");
+    eventTarget2.className = "card open match"
+    // eventTarget2.classList.add("match");
+    // eventTarget1.removeEventListener('click', displaySymbol);
+    // eventTarget2.removeEventListener('click', displaySymbol);
     openCardsArr = [];
 
 }
@@ -139,8 +145,8 @@ function closeCards() {
         eventTarget2.id = "";
         eventTarget1.className = "card";
         eventTarget2.className = "card";
-        eventTarget1.addEventListener('click', displaySymbol);
-        eventTarget2.addEventListener('click', displaySymbol);
+        // eventTarget1.addEventListener('click', displaySymbol);
+        // eventTarget2.addEventListener('click', displaySymbol);
         openCardsArr = [];
 
     }
