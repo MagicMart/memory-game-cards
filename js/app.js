@@ -12,6 +12,7 @@ const array = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bo
  */
 let openCardsArr = [];
 let moves = 0;
+let matchedCards = 0;
 
 
 
@@ -116,6 +117,10 @@ function matchCards() {
     eventTarget1.className = "card open match";
     eventTarget2.className = "card open match";
     openCardsArr = [];
+    matchedCards +=1;
+    if (matchedCards === 8) {
+    	win();
+    }
 
 }
 
@@ -135,6 +140,11 @@ function closeCards() {
 
     }
 
+}
+
+function win() {
+	console.log("You won in " + moves + " moves!");
+	//TODO: Call the modal box
 }
 
 
