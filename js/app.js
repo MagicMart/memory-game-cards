@@ -74,7 +74,6 @@ function displaySymbol(e) {
     "use strict";
     if (e.target && e.target.className === "card") {
         const eventTarget = e.target;
-        // eventTarget.removeEventListener('click', displaySymbol);
         eventTarget.className = "card open show";
         whatSymbol(eventTarget);
         // call move counter function
@@ -100,7 +99,6 @@ function holdCards(icon, eventTarget) {
     openCardsArr.push(eventTarget);
     //check to see if cards match
     if (openCardsArr.length !== 4) {
-        // openCardsArr[1].eventTarget.removeEventListener('click', displaySymbol, true); // Make sure user can't match by clicking on the same square
         return;
     }
     if (openCardsArr[0] === openCardsArr[2]) {
@@ -113,22 +111,15 @@ function holdCards(icon, eventTarget) {
 }
 
 function matchCards() {
-    // let icon1 = openCardsArr[0];
     let eventTarget1 = openCardsArr[1];
-    // let icon2 = openCardsArr[2];
     let eventTarget2 = openCardsArr[3];
-    eventTarget1.className = "card open match"
-    // eventTarget1.classList.add("match");
-    eventTarget2.className = "card open match"
-    // eventTarget2.classList.add("match");
-    // eventTarget1.removeEventListener('click', displaySymbol);
-    // eventTarget2.removeEventListener('click', displaySymbol);
+    eventTarget1.className = "card open match";
+    eventTarget2.className = "card open match";
     openCardsArr = [];
 
 }
 
 function closeCards() {
-
     let eventTarget1 = openCardsArr[1];
     let eventTarget2 = openCardsArr[3];
     eventTarget1.id = "incorrect";
@@ -140,8 +131,6 @@ function closeCards() {
         eventTarget2.id = "";
         eventTarget1.className = "card";
         eventTarget2.className = "card";
-        // eventTarget1.addEventListener('click', displaySymbol);
-        // eventTarget2.addEventListener('click', displaySymbol);
         openCardsArr = [];
 
     }
