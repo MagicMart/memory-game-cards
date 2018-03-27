@@ -72,14 +72,11 @@ function moveCounter() {
 // display the clicked card
 function displaySymbol(e) {
     "use strict";
-    if ((e.target.className === "card" && e.target !== "card open match") && (e.target && e.target.nodeName === "LI")) {
-
+    if (e.target && e.target.className === "card") {
         const eventTarget = e.target;
         // eventTarget.removeEventListener('click', displaySymbol);
         eventTarget.className = "card open show";
         whatSymbol(eventTarget);
-
-
         // call move counter function
         moveCounter();
     }
@@ -134,8 +131,6 @@ function closeCards() {
 
     let eventTarget1 = openCardsArr[1];
     let eventTarget2 = openCardsArr[3];
-
-
     eventTarget1.id = "incorrect";
     eventTarget2.id = "incorrect";
     setTimeout(pause, 200);
