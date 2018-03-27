@@ -13,7 +13,8 @@ const array = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bo
 let openCardsArr = [];
 let moves = 0;
 let matchedCards = 0;
-
+let start = true;
+let myLet;
 
 
 
@@ -47,6 +48,7 @@ function resetGame() {
         const card = document.querySelectorAll('.card > i')[index];
         card.className = element;
     });
+
     cardClick();
 }
 // Call the resetGame function for testing
@@ -70,9 +72,22 @@ function moveCounter() {
     moveElement.textContent = moves;
 }
 
+function myTimer() {
+	 if (start) {
+          seconds = 0;
+          start = false;
+     }
+     document.querySelector(".seconds").textContent = seconds;
+     seconds += 1;
+     console.log(seconds);
+}
+
 // display the clicked card
 function displaySymbol(e) {
     "use strict";
+    if (start) {
+    	myLet = setInterval(myTimer, 1000);
+    }
     if (e.target && e.target.className === "card") {
         const eventTarget = e.target;
         eventTarget.className = "card open show";
@@ -143,7 +158,8 @@ function closeCards() {
 }
 
 function win() {
-	console.log("You won in " + moves + " moves!");
+	clearInterval(myLet);
+	console.log("You won in " + moves + " moves in " + seconds + "seconds");
 	//TODO: Call the modal box
 }
 
