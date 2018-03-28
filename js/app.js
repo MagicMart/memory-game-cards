@@ -16,6 +16,8 @@ let matchedCards = 0;
 let start = true;
 let myLet;
 let seconds;
+let stars = 3;
+let starElement;
 
 
 
@@ -50,7 +52,7 @@ function resetGame() {
     // Store the shuffled array in a variable
     let shuffleResult = shuffle(array);
     // Add the shuffled icons to the page
-    shuffleResult.forEach(function (element, index) {
+    shuffleResult.forEach(function(element, index) {
         const card = document.querySelectorAll('.card > i')[index];
         card.className = element;
     });
@@ -61,9 +63,9 @@ function resetGame() {
 // Call the resetGame function for testing
 resetGame();
 // When the reset button is pressed reload the page
-document.querySelector('.restart').addEventListener("click", function () {
+document.querySelector('.restart').addEventListener("click", function() {
     "use strict";
-     window.location.reload(false);
+    window.location.reload(false);
 });
 //set up event listener for the card
 function cardClick() {
@@ -76,11 +78,31 @@ function cardClick() {
 
 }
 
+function minusStar() {
+    "use strict";
+    if (stars === 3) {
+        starElement = document.querySelectorAll(".stars i")[0];
+    }
+    if (stars === 2) {
+        starElement = document.querySelectorAll(".stars i")[1];
+    }
+    starElement.className = "";
+    starElement.textContent = "_";
+    stars -= 1;
+}
+
 function moveCounter() {
     "use strict";
     moves += 1;
     const moveElement = document.querySelector('.moves');
     moveElement.textContent = moves;
+    if (moves === 32) {
+        minusStar();
+    }
+    if (moves === 64) {
+        minusStar();
+    }
+
 }
 
 function myTimer() {
@@ -139,6 +161,7 @@ function holdCards(icon, eventTarget) {
 }
 
 function matchCards() {
+    "use strict";
     let eventTarget1 = openCardsArr[1];
     let eventTarget2 = openCardsArr[3];
     eventTarget1.className = "card open match";
@@ -175,7 +198,8 @@ function win() {
     clearInterval(myLet);
     console.log("You won in " + moves + " moves in " + seconds + "seconds");
     document.getElementById('id01').style.display = 'block';
-    document.querySelector(".result").textContent = `You won in ${moves} moves and it took you ${seconds} seconds`;
+    document.querySelector(".result").textContent = `You won in ${moves} moves and ${seconds} seconds`;
+    document.querySelector('.star-result').textContent = `You earned ${stars} stars.`;
     document.querySelector(".play-again").addEventListener("click", getReady);
 
     function getReady() {
