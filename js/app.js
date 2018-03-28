@@ -41,17 +41,23 @@ function shuffle(array) {
 
 function resetGame() {
     "use strict";
+    openCardsArr = [];
     moves = 0;
+    matchedCards = 0;
+    start = true;
+    seconds = 0;
+    document.querySelectorAll('.moves').textContent = moves;
 
-
+    let i;
     // Make sure all cards are closed
-    for (let i = 0; i < 16; i += 1) {
-    document.querySelectorAll(".card")[i].className = "card";
-}
+    for (i = 0; i < 16; i += 1) {
+        document.querySelectorAll(".card")[i].className = "card";
+    }
+
     // Store the shuffled array in a variable
     let shuffleResult = shuffle(array);
     // Add the shuffled icons to the page
-    shuffleResult.forEach(function(element, index) {
+    shuffleResult.forEach(function (element, index) {
         const card = document.querySelectorAll('.card > i')[index];
         card.className = element;
     });
@@ -61,7 +67,11 @@ function resetGame() {
 }
 // Call the resetGame function for testing
 resetGame();
-
+// When the reset button is pressed reload the page
+document.querySelector('.restart').addEventListener("click", function () {
+    "use strict";
+     window.location.reload(false);
+});
 //set up event listener for the card
 function cardClick() {
     "use strict";
@@ -81,6 +91,7 @@ function moveCounter() {
 }
 
 function myTimer() {
+    "use strict";
     if (start) {
         seconds = 0;
         start = false;
@@ -173,10 +184,11 @@ function win() {
     document.getElementById('id01').style.display = 'block';
     document.querySelector(".result").textContent = `You won in ${moves} moves and it took you ${seconds} seconds`;
     document.querySelector(".play-again").addEventListener("click", getReady);
+
     function getReady() {
-    	document.getElementById('id01').style.display = "none";
-    	start = true;
-    	resetGame();
+        document.getElementById('id01').style.display = "none";
+        start = true;
+        resetGame();
     }
 
 }
