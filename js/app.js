@@ -15,6 +15,7 @@ let moves = 0;
 let matchedCards = 0;
 let start = true;
 let myLet;
+let seconds;
 
 
 
@@ -41,6 +42,12 @@ function shuffle(array) {
 function resetGame() {
     "use strict";
     moves = 0;
+
+
+    // Make sure all cards are closed
+    for (let i = 0; i < 16; i += 1) {
+    document.querySelectorAll(".card")[i].className = "card";
+}
     // Store the shuffled array in a variable
     let shuffleResult = shuffle(array);
     // Add the shuffled icons to the page
@@ -48,6 +55,7 @@ function resetGame() {
         const card = document.querySelectorAll('.card > i')[index];
         card.className = element;
     });
+
 
     cardClick();
 }
@@ -68,25 +76,25 @@ function cardClick() {
 function moveCounter() {
     "use strict";
     moves += 1;
-    const moveElement = document.querySelector('span');
+    const moveElement = document.querySelector('.moves');
     moveElement.textContent = moves;
 }
 
 function myTimer() {
-	 if (start) {
-          seconds = 0;
-          start = false;
-     }
-     document.querySelector(".seconds").textContent = seconds;
-     seconds += 1;
-     console.log(seconds);
+    if (start) {
+        seconds = 0;
+        start = false;
+    }
+    document.querySelector(".seconds").textContent = seconds;
+    seconds += 1;
+    console.log(seconds);
 }
 
 // display the clicked card
 function displaySymbol(e) {
     "use strict";
     if (start) {
-    	myLet = setInterval(myTimer, 1000);
+        myLet = setInterval(myTimer, 1000);
     }
     if (e.target && e.target.className === "card") {
         const eventTarget = e.target;
@@ -132,9 +140,9 @@ function matchCards() {
     eventTarget1.className = "card open match";
     eventTarget2.className = "card open match";
     openCardsArr = [];
-    matchedCards +=1;
+    matchedCards += 1;
     if (matchedCards === 8) {
-    	win();
+        win();
     }
 
 }
@@ -158,9 +166,19 @@ function closeCards() {
 }
 
 function win() {
-	clearInterval(myLet);
-	console.log("You won in " + moves + " moves in " + seconds + "seconds");
-	//TODO: Call the modal box
+    document.getElementById('id01').style.display = 'block';
+    "use strict";
+    clearInterval(myLet);
+    console.log("You won in " + moves + " moves in " + seconds + "seconds");
+    document.getElementById('id01').style.display = 'block';
+    document.querySelector(".result").textContent = `You won in ${moves} moves and it took you ${seconds} seconds`;
+    document.querySelector(".play-again").addEventListener("click", getReady);
+    function getReady() {
+    	document.getElementById('id01').style.display = "none";
+    	start = true;
+    	resetGame();
+    }
+
 }
 
 
