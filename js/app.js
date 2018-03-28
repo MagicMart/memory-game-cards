@@ -41,13 +41,6 @@ function shuffle(array) {
 
 function resetGame() {
     "use strict";
-    openCardsArr = [];
-    moves = 0;
-    matchedCards = 0;
-    start = true;
-    seconds = 0;
-    document.querySelectorAll('.moves').textContent = moves;
-
     let i;
     // Make sure all cards are closed
     for (i = 0; i < 16; i += 1) {
@@ -188,7 +181,7 @@ function win() {
     function getReady() {
         document.getElementById('id01').style.display = "none";
         start = true;
-        resetGame();
+        window.location.reload(false);
     }
 
 }
