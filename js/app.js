@@ -195,6 +195,8 @@ function closeCards() {
 }
 
 function win() {
+     "use strict";
+     clearInterval(myLet);
      // Get the modal
      const modal = document.getElementById("myModal");
 
