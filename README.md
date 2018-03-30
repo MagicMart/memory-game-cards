@@ -1,15 +1,8 @@
-# Memory Game Project
+# Memory Game Cards
 
-## Table of Contents
+**Memory game Cards** is a game that I created with the help of **Udacity**. It is a project that I must complete as part of the Google Udacity FEND Nanodegree. 
+Rather than start from scratch, I decided to download the starter code that Udacity provided.
+I have built most of the JavaScript functionality
 
-* [Instructions](#instructions)
-
-## Instructions for Martin Tudor
-
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
+Here is the live version.
 https://magicmart.github.io/memory-game-cards/
