@@ -83,9 +83,14 @@ function cardClick() {
      "use strict";
 
      const deck = document.querySelector(".deck");
-     deck.addEventListener("click", displaySymbol);
+     deck.addEventListener("click", displaySymbolEvent);
      // run displaySymbol function when card is clicked
      //true - The event handler is executed in the capturing phase
+}
+
+// the event loop? https://youtu.be/8aGhZQkoFbQ
+function displaySymbolEvent(e) {
+     setTimeout(displaySymbol(e),0);
 }
 
 function minusStar() {
