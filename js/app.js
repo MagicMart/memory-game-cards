@@ -193,7 +193,7 @@ function closeCards() {
           openCardsArr = [];
      }
 }
-
+/* win function Adapted from https://www.w3schools.com/howto/howto_css_modals.asp */
 function win() {
      "use strict";
      clearInterval(myLet);
