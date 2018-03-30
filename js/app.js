@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-const array = [
+const arr = [
      "fa fa-diamond",
      "fa fa-paper-plane-o",
      "fa fa-anchor",
@@ -35,22 +35,18 @@ let seconds;
 let stars = 3;
 let starElement;
 
-// Shuffle function from http://stackoverflow.com/a/2450976 - adapted
-function shuffle(array) {
-     "use strict";
-     let currentIndex = array.length;
-     let temporaryValue;
-     let randomIndex;
 
-     while (currentIndex !== 0) {
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
+function shuffle(arr2) {
+    "use strict";
+     const shuffleArray = [];
+     const arrLength = arr2.length;
+     for (let i = arrLength; i > 0; i -= 1) {
+     const num = Math.floor(Math.random() * i);
+     const cut = arr2[num];
+     arr2.splice(num, 1);
+     shuffleArray.push(cut);
      }
-
-     return array;
+     return shuffleArray;
 }
 
 function resetGame() {
@@ -62,7 +58,7 @@ function resetGame() {
      }
 
      // Store the shuffled array in a variable
-     let shuffleResult = shuffle(array);
+     let shuffleResult = shuffle(arr);
      // Add the shuffled icons to the page
      shuffleResult.forEach(function(element, index) {
           const card = document.querySelectorAll(".card > i")[index];
@@ -84,7 +80,6 @@ function cardClick() {
      const deck = document.querySelector(".deck");
      deck.addEventListener("click", displaySymbol);
      // run displaySymbol function when card is clicked
-     //true - The event handler is executed in the capturing phase
 }
 
 function minusStar() {
