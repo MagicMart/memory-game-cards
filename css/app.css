@@ -111,3 +111,31 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+@media screen and (max-width: 500px){
+    .deck {
+        width: 330px;
+        min-height: 330px;
+        padding:16px;      
+    }
+    
+   
+    .deck .card {
+        width: 64.5px;
+        height: 64.5px;  
+    }
+}
+@media screen and (min-width: 501px) and (max-width: 760px){
+    
+    .deck {
+        width: 495px;
+        min-height: 495px;
+        padding:24px;      
+    }
+    
+   
+    .deck .card {
+        width: 93.75px;
+        height: 93.75px;  
+    }
+}
