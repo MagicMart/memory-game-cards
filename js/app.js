@@ -71,7 +71,7 @@ function resetGame() {
 
      cardClick();
 }
-// Call the resetGame function for testing
+
 resetGame();
 // When the reset button is pressed reload the page
 document.querySelector(".restart").addEventListener("click", function() {
@@ -81,7 +81,6 @@ document.querySelector(".restart").addEventListener("click", function() {
 //set up event listener for the card
 function cardClick() {
      "use strict";
-
      const deck = document.querySelector(".deck");
      deck.addEventListener("click", displaySymbol);
      // run displaySymbol function when card is clicked
@@ -122,7 +121,6 @@ function myTimer() {
      }
      document.querySelector(".seconds").textContent = seconds;
      seconds += 1;
-     console.log(seconds);
 }
 
 // display the clicked card
@@ -160,7 +158,6 @@ function holdCards(icon, eventTarget) {
      if (openCardsArr[0] === openCardsArr[2]) {
           matchCards();
      } else {
-          // openCardsArr[1].addEventListener('click', displaySymbol, true); // Reintroduce event listener. See above.
           closeCards();
      }
 }
