@@ -91,8 +91,15 @@ h1 {
 
 .score-panel {
     text-align: left;
+    font-size: 1.25em;
     width: 345px;
     margin-bottom: 10px;
+
+}
+
+span {
+    color: green;
+    font-size: 1.30em;
 }
 
 .score-panel .stars {
@@ -109,16 +116,21 @@ h1 {
 
 .score-panel .restart {
     float: right;
+    font-size: 28px;
     cursor: pointer;
+
 }
 
 @media screen and (max-width: 536px){
     .deck {
-        width: 330px;
-        min-height: 330px;
+        width: 310px;
+        min-height: 320px;
         padding:16px;
     }
 
+    .score-panel {
+        width: 280px;
+    }
 
     .deck .card {
         width: 64.5px;
