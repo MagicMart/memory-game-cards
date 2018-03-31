@@ -19,9 +19,9 @@ There are 8 pairs of matching cards, initially turned "face down". The user shou
 
 When all the cards are matched, the modal box pops and the user is informed of:
 
-..* how many moves they made
-..* how many seconds it took
-..* how many stars the they achieved
+  * how many moves they made
+  * how many seconds it took
+  * how many stars the they achieved
 
 Here is the live version.
 https://magicmart.github.io/memory-game-cards/
