@@ -30,7 +30,8 @@ let openCardsArr = [];
 let moves = 0;
 let matchedCards = 0;
 let start = true;
-let myLet;
+let endTimer = false;
+let timeFunc;
 let seconds;
 let stars = 3;
 let starElement;
@@ -110,19 +111,24 @@ function moveCounter() {
 
 function myTimer() {
     "use strict";
+    if (endTimer) {
+     clearInterval(timeFunc);
+     return;
+    }
     if (start) {
         seconds = 0;
         start = false;
     }
     document.querySelector(".seconds").textContent = seconds;
     seconds += 1;
+
 }
 
 // display the clicked card
 function displaySymbol(e) {
     "use strict";
     if (start) {
-        myLet = setInterval(myTimer, 1000);
+        timeFunc = setInterval(myTimer, 1000);
     }
     if (e.target && e.target.className === "card") {
         e.stopPropagation();
@@ -193,7 +199,7 @@ function closeCards() {
 /* win function Adapted from https://www.w3schools.com/howto/howto_css_modals.asp */
 function win() {
     "use strict";
-    clearInterval(myLet);
+    endTimer = true;
     // Get the modal
     const modal = document.getElementById("myModal");
 
