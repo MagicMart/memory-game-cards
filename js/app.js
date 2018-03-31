@@ -176,14 +176,18 @@ function closeCards() {
     let eventTarget2 = openCardsArr[3];
     eventTarget1.id = "incorrect";
     eventTarget2.id = "incorrect";
+    // Remove event listener on the deck while unmatched cards are shown briefly before being closed
+    const deck = document.querySelector(".deck");
+    deck.removeEventListener("click", displaySymbol);
     setTimeout(pause, 200);
-
     function pause() {
         eventTarget1.id = "";
         eventTarget2.id = "";
         eventTarget1.className = "card";
         eventTarget2.className = "card";
         openCardsArr = [];
+        // Reintroduce the event listener on deck now that the matched cards have been shown
+        deck.addEventListener("click", displaySymbol);
     }
 }
 /* win function Adapted from https://www.w3schools.com/howto/howto_css_modals.asp */
