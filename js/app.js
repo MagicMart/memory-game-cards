@@ -61,7 +61,7 @@ function resetGame() {
     // Store the shuffled array in a variable
     let shuffleResult = shuffle(arr);
     // Add the shuffled icons to the page
-    shuffleResult.forEach(function (element, index) {
+    shuffleResult.forEach(function(element, index) {
         const card = document.querySelectorAll(".card > i")[index];
         card.className = element;
     });
@@ -112,8 +112,8 @@ function moveCounter() {
 function myTimer() {
     "use strict";
     if (endTimer) {
-     clearInterval(timeFunc);
-     return;
+        clearInterval(timeFunc);
+        return;
     }
     if (start) {
         seconds = 0;
@@ -186,6 +186,7 @@ function closeCards() {
     const deck = document.querySelector(".deck");
     deck.removeEventListener("click", displaySymbol);
     setTimeout(pause, 200);
+
     function pause() {
         eventTarget1.id = "";
         eventTarget2.id = "";
