@@ -9,11 +9,16 @@ I have built most of the JavaScript functionality. I have made the page responsi
 ## Dependencies
 
 The game uses icons from the following website:
-https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  * https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css
+
+Google Fonts:
+  * https://fonts.googleapis.com/css?family=Coda
 
 For the modal box, I adapted an example from **w3schools**:
 
-https://www.w3schools.com/howto/howto_css_modals.asp
+  * https://www.w3schools.com/howto/howto_css_modals.asp
+
+
 
 ## Instructions
 
@@ -28,7 +33,7 @@ Above the deck the following is displayed:
 
   After a certain number of moves, the number of stars is reduced. *** stars is the highest available, * star is the lowest.
 
-When all the cards are matched, the modal box pops and the user is informed of:
+When all the cards are matched, the modal box pops up and the user is informed of:
 
   * how many moves they made
   * how many seconds it took
