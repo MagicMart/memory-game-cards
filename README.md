@@ -41,7 +41,3 @@ When all the cards are matched, the modal box pops up and the user is informed o
 
 Here is the live version.
 https://magicmart.github.io/memory-game-cards/
-
-## Known Bug
-
-When the user clicks very very rapidly, cards that should close or be matched stay open.
