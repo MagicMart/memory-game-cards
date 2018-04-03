@@ -61,7 +61,7 @@ function resetGame() {
     // Store the shuffled array in a variable
     let shuffleResult = shuffle(arr);
     // Add the shuffled icons to the page
-    shuffleResult.forEach(function(element, index) {
+    shuffleResult.forEach(function (element, index) {
         const card = document.querySelectorAll(".card > i")[index];
         card.className = element;
     });
@@ -178,6 +178,7 @@ function matchCards() {
 }
 
 function closeCards() {
+    "use strict";
     let eventTarget1 = openCardsArr[1];
     let eventTarget2 = openCardsArr[3];
     eventTarget1.id = "incorrect";
