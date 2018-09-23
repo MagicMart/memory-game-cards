@@ -2,22 +2,22 @@
  * Create a list that holds all of your cards
  */
 const arr = [
-    'fa fa-diamond',
-    'fa fa-paper-plane-o',
-    'fa fa-anchor',
-    'fa fa-bolt',
-    'fa fa-cube',
-    'fa fa-leaf',
-    'fa fa-bicycle',
-    'fa fa-bomb',
-    'fa fa-diamond',
-    'fa fa-paper-plane-o',
-    'fa fa-anchor',
-    'fa fa-bolt',
-    'fa fa-cube',
-    'fa fa-leaf',
-    'fa fa-bicycle',
-    'fa fa-bomb'
+    "fa fa-diamond",
+    "fa fa-paper-plane-o",
+    "fa fa-anchor",
+    "fa fa-bolt",
+    "fa fa-cube",
+    "fa fa-leaf",
+    "fa fa-bicycle",
+    "fa fa-bomb",
+    "fa fa-diamond",
+    "fa fa-paper-plane-o",
+    "fa fa-anchor",
+    "fa fa-bolt",
+    "fa fa-cube",
+    "fa fa-leaf",
+    "fa fa-bicycle",
+    "fa fa-bomb"
 ];
 
 /*
@@ -36,9 +36,8 @@ let seconds;
 let stars = 3;
 let starElement;
 
-
 function shuffle(arr2) {
-    'use strict';
+    "use strict";
     const shuffleArray = [];
     let i;
     for (i = 16; i > 0; i -= 1) {
@@ -51,18 +50,18 @@ function shuffle(arr2) {
 }
 
 function resetGame() {
-    'use strict';
+    "use strict";
     let i;
     // Make sure all cards are closed
     for (i = 0; i < 16; i += 1) {
-        document.querySelectorAll('.card')[i].className = 'card';
+        document.querySelectorAll(".card")[i].className = "card";
     }
 
     // Store the shuffled array in a variable
     const shuffleResult = shuffle(arr);
     // Add the shuffled icons to the page
     shuffleResult.forEach((element, index) => {
-        const card = document.querySelectorAll('.card > i')[index];
+        const card = document.querySelectorAll(".card > i")[index];
         card.className = element;
     });
 
@@ -71,36 +70,37 @@ function resetGame() {
 
 resetGame();
 // When the reset button is pressed reload the page
-document.querySelector('.restart').addEventListener('click', () => {
-    'use strict';
+document.querySelector(".restart").addEventListener("click", () => {
+    "use strict";
     location.reload(false);
 });
 //set up event listener for the card
 function cardClick() {
-    'use strict';
-    const deck = document.querySelector('.deck');
-    deck.addEventListener('click', displaySymbol);
+    "use strict";
+    const deck = document.querySelector(".deck");
+    deck.addEventListener("click", displaySymbol);
     // run displaySymbol function when card is clicked
 }
 
 function minusStar() {
-    'use strict';
+    "use strict";
     if (stars === 3) {
-        starElement = document.querySelectorAll('.stars i')[0];
+        starElement = document.querySelectorAll(".stars i")[0];
     }
     if (stars === 2) {
-        starElement = document.querySelectorAll('.stars i')[1];
+        starElement = document.querySelectorAll(".stars i")[1];
     }
-    starElement.className = '';
-    starElement.textContent = '_';
+    starElement.className = "";
+    starElement.textContent = "_";
     stars -= 1;
 }
 
 function moveCounter() {
-    'use strict';
+    "use strict";
     moves += 1;
-    const moveElement = document.querySelector('.moves');
-    moveElement.textContent = moves;
+    let movesStr = moves + "";
+    const moveElement = document.querySelector(".moves");
+    moveElement.textContent = movesStr.padStart(3, "0");
     if (moves === 32) {
         minusStar();
     }
@@ -110,7 +110,7 @@ function moveCounter() {
 }
 
 function myTimer() {
-    'use strict';
+    "use strict";
     if (endTimer) {
         clearInterval(timeFunc);
         return;
@@ -119,20 +119,24 @@ function myTimer() {
         seconds = 0;
         start = false;
     }
-    document.querySelector('.seconds').textContent = seconds;
+    let secondsStr = seconds + "";
+    document.querySelector(".seconds").textContent = secondsStr.padStart(
+        3,
+        "0"
+    );
     seconds += 1;
 }
 
 // display the clicked card
 function displaySymbol(e) {
-    'use strict';
+    "use strict";
     if (start) {
         timeFunc = setInterval(myTimer, 1000);
     }
-    if (e.target && e.target.className === 'card') {
+    if (e.target && e.target.className === "card") {
         e.stopPropagation();
         const eventTarget = e.target;
-        eventTarget.className = 'card open show';
+        eventTarget.className = "card open show";
         whatSymbol(eventTarget);
         // call move counter function
         moveCounter();
@@ -141,15 +145,15 @@ function displaySymbol(e) {
 
 // Find the symbol that was in the clicked card
 function whatSymbol(eventTarget) {
-    'use strict';
-    const findIcon = eventTarget.querySelector('i');
+    "use strict";
+    const findIcon = eventTarget.querySelector("i");
     const icon = findIcon.className;
     // Send symbol and the event.target data for its card to a function
     holdCards(icon, eventTarget);
 }
 
 function holdCards(icon, eventTarget) {
-    'use strict';
+    "use strict";
     openCardsArr.push(icon);
     openCardsArr.push(eventTarget);
     //check to see if cards match
@@ -164,11 +168,11 @@ function holdCards(icon, eventTarget) {
 }
 
 function matchCards() {
-    'use strict';
+    "use strict";
     const eventTarget1 = openCardsArr[1];
     const eventTarget2 = openCardsArr[3];
-    eventTarget1.className = 'card open match';
-    eventTarget2.className = 'card open match';
+    eventTarget1.className = "card open match";
+    eventTarget2.className = "card open match";
     openCardsArr = [];
     matchedCards += 1;
     if (matchedCards === 8) {
@@ -177,69 +181,69 @@ function matchCards() {
 }
 
 function closeCards() {
-    'use strict';
+    "use strict";
     const eventTarget1 = openCardsArr[1];
     const eventTarget2 = openCardsArr[3];
-    eventTarget1.id = 'incorrect';
-    eventTarget2.id = 'incorrect';
+    eventTarget1.id = "incorrect";
+    eventTarget2.id = "incorrect";
     // Remove event listener on the deck while unmatched cards are shown briefly before being closed
-    const deck = document.querySelector('.deck');
-    deck.removeEventListener('click', displaySymbol);
+    const deck = document.querySelector(".deck");
+    deck.removeEventListener("click", displaySymbol);
     setTimeout(pause, 200);
 
     function pause() {
-        eventTarget1.id = '';
-        eventTarget2.id = '';
-        eventTarget1.className = 'card';
-        eventTarget2.className = 'card';
+        eventTarget1.id = "";
+        eventTarget2.id = "";
+        eventTarget1.className = "card";
+        eventTarget2.className = "card";
         openCardsArr = [];
         // Reintroduce the event listener on deck now that the matched cards have been shown
-        deck.addEventListener('click', displaySymbol);
+        deck.addEventListener("click", displaySymbol);
     }
 }
 /* win function Adapted from https://www.w3schools.com/howto/howto_css_modals.asp */
 function win() {
-    'use strict';
+    "use strict";
     endTimer = true;
     // Get the modal
-    const modal = document.getElementById('myModal');
+    const modal = document.getElementById("myModal");
 
     // Get the <span> element that closes the modal
-    const span = document.getElementsByClassName('close')[0];
+    const span = document.getElementsByClassName("close")[0];
 
     // When the user clicks the button, open the modal
 
-    modal.style.display = 'block';
+    modal.style.display = "block";
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = 'none';
+    span.onclick = function() {
+        modal.style.display = "none";
     };
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
+    window.onclick = function(event) {
         if (event.target === modal) {
-            modal.style.display = 'none';
+            modal.style.display = "none";
         }
     };
 
     //Get the moves-modal span
-    const movesModal = document.querySelector('.moves-modal');
+    const movesModal = document.querySelector(".moves-modal");
 
     // Get the second-modal span
-    const secondsModal = document.querySelector('.seconds-modal');
+    const secondsModal = document.querySelector(".seconds-modal");
 
     //Get the stars-modal span
-    const starsModal = document.querySelector('.stars-modal');
+    const starsModal = document.querySelector(".stars-modal");
 
     //Get play again class
-    const playAgain = document.querySelector('.play-again');
+    const playAgain = document.querySelector(".play-again");
     movesModal.textContent = moves;
     secondsModal.textContent = seconds;
     starsModal.textContent = stars;
 
     //Page reloads when user clicks play again button
-    playAgain.addEventListener('click', () => {
+    playAgain.addEventListener("click", () => {
         location.reload(false);
     });
 }

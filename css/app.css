@@ -17,8 +17,8 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    background: #ffffff url("../img/geometry2.png"); /* Background pattern from Subtle Patterns */
+    font-family: "Coda", cursive;
 }
 
 .container {
@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 300;
 }
 
@@ -90,16 +90,17 @@ h1 {
  */
 
 .score-panel {
+    display: flex;
+    justify-content: space-around;
     text-align: left;
     font-size: 1.25em;
     width: 345px;
     margin-bottom: 10px;
-
 }
 
 span {
     color: green;
-    font-size: 1.30em;
+    font-size: 1.3em;
 }
 
 .score-panel .stars {
@@ -115,17 +116,19 @@ span {
 }
 
 .score-panel .restart {
-    float: right;
+    /* float: right; */
     font-size: 28px;
     cursor: pointer;
-
 }
-
-@media screen and (max-width: 536px){
+.moves,
+.seconds {
+    font-family: monospace;
+}
+@media screen and (max-width: 536px) {
     .deck {
         width: 310px;
         min-height: 320px;
-        padding:16px;
+        padding: 16px;
     }
 
     .score-panel {
@@ -137,14 +140,12 @@ span {
         height: 64.5px;
     }
 }
-@media screen and (min-width: 537px) and (max-width: 760px){
-
+@media screen and (min-width: 537px) and (max-width: 760px) {
     .deck {
         width: 495px;
         min-height: 495px;
-        padding:24px;
+        padding: 24px;
     }
-
 
     .deck .card {
         width: 93.75px;
