@@ -119,12 +119,13 @@ function myTimer() {
         seconds = 0;
         start = false;
     }
+    seconds += 1;
     let secondsStr = seconds + "";
     document.querySelector(".seconds").textContent = secondsStr.padStart(
         3,
         "0"
     );
-    seconds += 1;
+   
 }
 
 // display the clicked card
