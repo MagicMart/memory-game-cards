@@ -125,7 +125,6 @@ function myTimer() {
         3,
         "0"
     );
-   
 }
 
 // display the clicked card
@@ -138,9 +137,8 @@ function displaySymbol(e) {
         e.stopPropagation();
         const eventTarget = e.target;
         eventTarget.className = "card open show";
-        whatSymbol(eventTarget);
-        // call move counter function
         moveCounter();
+        whatSymbol(eventTarget);
     }
 }
 
