@@ -1,0 +1,23 @@
+{
+  "name": "memory-game-cards",
+  "version": "1.0.0",
+  "description": "**Memory game Cards** is a game that I created with the help of **Udacity**. It is a project that I must complete as part of the **Google Udacity FEND Nanodegree**. I decided to download the starter code that Udacity provided. This consisted of a HTML file, a CSS file, and a JavaScript file with one function in it (the shuffle function; I deleted  it and introduced my own). I have built most of the JavaScript functionality. I have made the page responsive (with media queries) to different size screens.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MagicMart/memory-game-cards.git"
+  },
+  "author": "Martin Tudor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MagicMart/memory-game-cards/issues"
+  },
+  "homepage": "https://github.com/MagicMart/memory-game-cards#readme",
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-google": "^0.10.0"
+  }
+}

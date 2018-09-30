@@ -35,7 +35,10 @@ let timeFunc;
 let seconds;
 let stars = 3;
 let starElement;
-
+/**
+ * @param  {array} arr2
+ * @return {array}
+ */
 function shuffle(arr2) {
     "use strict";
     const shuffleArray = [];
@@ -48,7 +51,8 @@ function shuffle(arr2) {
     }
     return shuffleArray;
 }
-
+/**
+ */
 function resetGame() {
     "use strict";
     let i;
@@ -74,14 +78,17 @@ document.querySelector(".restart").addEventListener("click", () => {
     "use strict";
     location.reload(false);
 });
-//set up event listener for the card
+// set up event listener for the card
+/**
+ */
 function cardClick() {
     "use strict";
     const deck = document.querySelector(".deck");
     deck.addEventListener("click", displaySymbol);
     // run displaySymbol function when card is clicked
 }
-
+/**
+ */
 function minusStar() {
     "use strict";
     if (stars === 3) {
@@ -94,7 +101,8 @@ function minusStar() {
     starElement.textContent = "_";
     stars -= 1;
 }
-
+/**
+ */
 function moveCounter() {
     "use strict";
     moves += 1;
@@ -108,7 +116,8 @@ function moveCounter() {
         minusStar();
     }
 }
-
+/**
+ */
 function myTimer() {
     "use strict";
     if (endTimer) {
@@ -128,6 +137,9 @@ function myTimer() {
 }
 
 // display the clicked card
+/**
+ * @param  {object} e
+ */
 function displaySymbol(e) {
     "use strict";
     if (start) {
@@ -143,6 +155,9 @@ function displaySymbol(e) {
 }
 
 // Find the symbol that was in the clicked card
+/**
+ * @param  {object} eventTarget
+ */
 function whatSymbol(eventTarget) {
     "use strict";
     const findIcon = eventTarget.querySelector("i");
@@ -150,12 +165,15 @@ function whatSymbol(eventTarget) {
     // Send symbol and the event.target data for its card to a function
     holdCards(icon, eventTarget);
 }
-
+/**
+ * @param  {string} icon
+ * @param  {object} eventTarget
+ */
 function holdCards(icon, eventTarget) {
     "use strict";
     openCardsArr.push(icon);
     openCardsArr.push(eventTarget);
-    //check to see if cards match
+    // check to see if cards match
     if (openCardsArr.length !== 4) {
         return;
     }
@@ -165,7 +183,8 @@ function holdCards(icon, eventTarget) {
         closeCards();
     }
 }
-
+/**
+ */
 function matchCards() {
     "use strict";
     const eventTarget1 = openCardsArr[1];
@@ -178,29 +197,33 @@ function matchCards() {
         win();
     }
 }
-
+/**
+ */
 function closeCards() {
     "use strict";
     const eventTarget1 = openCardsArr[1];
     const eventTarget2 = openCardsArr[3];
     eventTarget1.id = "incorrect";
     eventTarget2.id = "incorrect";
-    // Remove event listener on the deck while unmatched cards are shown briefly before being closed
+    // Remove event listener on the deck
+    // while unmatched cards are shown briefly before being closed
     const deck = document.querySelector(".deck");
     deck.removeEventListener("click", displaySymbol);
     setTimeout(pause, 200);
-
+    /**
+     */
     function pause() {
         eventTarget1.id = "";
         eventTarget2.id = "";
         eventTarget1.className = "card";
         eventTarget2.className = "card";
         openCardsArr = [];
-        // Reintroduce the event listener on deck now that the matched cards have been shown
+        // Reintroduce the event listener on deck
+        // now that the matched cards have been shown
         deck.addEventListener("click", displaySymbol);
     }
 }
-/* win function Adapted from https://www.w3schools.com/howto/howto_css_modals.asp */
+/** win function Adapted from https://www.w3schools.com/howto/howto_css_modals.asp */
 function win() {
     "use strict";
     endTimer = true;
@@ -226,22 +249,22 @@ function win() {
         }
     };
 
-    //Get the moves-modal span
+    // Get the moves-modal span
     const movesModal = document.querySelector(".moves-modal");
 
     // Get the second-modal span
     const secondsModal = document.querySelector(".seconds-modal");
 
-    //Get the stars-modal span
+    // Get the stars-modal span
     const starsModal = document.querySelector(".stars-modal");
 
-    //Get play again class
+    // Get play again class
     const playAgain = document.querySelector(".play-again");
     movesModal.textContent = moves;
     secondsModal.textContent = seconds;
     starsModal.textContent = stars;
 
-    //Page reloads when user clicks play again button
+    // Page reloads when user clicks play again button
     playAgain.addEventListener("click", () => {
         location.reload(false);
     });
