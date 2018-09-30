@@ -98,7 +98,7 @@ function minusStar() {
 function moveCounter() {
     "use strict";
     moves += 1;
-    let movesStr = moves + "";
+    let movesStr = String(moves);
     const moveElement = document.querySelector(".moves");
     moveElement.textContent = movesStr.padStart(3, "0");
     if (moves === 32) {
@@ -120,7 +120,7 @@ function myTimer() {
         start = false;
     }
     seconds += 1;
-    let secondsStr = seconds + "";
+    let secondsStr = String(seconds);
     document.querySelector(".seconds").textContent = secondsStr.padStart(
         3,
         "0"
