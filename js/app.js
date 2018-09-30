@@ -125,7 +125,8 @@ function myTimer() {
         return;
     }
     if (start) {
-        seconds = 0;
+        timeFunc = setInterval(myTimer, 1000);
+        seconds = -1;
         start = false;
     }
     seconds += 1;
@@ -143,7 +144,7 @@ function myTimer() {
 function displaySymbol(e) {
     "use strict";
     if (start) {
-        timeFunc = setInterval(myTimer, 1000);
+        myTimer();
     }
     if (e.target && e.target.className === "card") {
         e.stopPropagation();
