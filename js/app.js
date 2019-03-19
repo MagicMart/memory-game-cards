@@ -181,10 +181,8 @@ function holdCards(icon, eventTarget) {
  */
 function matchCards() {
     "use strict";
-    const eventTarget1 = openCardsArr[1];
-    const eventTarget2 = openCardsArr[3];
-    eventTarget1.className = "card open match";
-    eventTarget2.className = "card open match";
+    openCardsArr[1].className = "card open match";
+    openCardsArr[3].className = "card open match";
     openCardsArr = [];
     matchedCards += 1;
     if (matchedCards === 8) {
