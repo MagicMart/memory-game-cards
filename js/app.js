@@ -36,20 +36,13 @@ let seconds;
 let stars = 3;
 let starElement;
 /**
- * @param  {array} arr2
+ * @param  {array} a
  * @return {array}
  */
-function shuffle(arr2) {
+function shuffle(a) {
     "use strict";
-    const shuffleArray = [];
-    let i;
-    for (i = 16; i > 0; i -= 1) {
-        const num = Math.floor(Math.random() * i);
-        const cut = arr2[num];
-        arr2.splice(num, 1);
-        shuffleArray.push(cut);
-    }
-    return shuffleArray;
+    const arr = [...a];
+    return arr.sort(() => 0.5 - Math.random());
 }
 /**
  */
