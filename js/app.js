@@ -29,7 +29,7 @@ const arr = [
 let openCardsArr = [];
 let moves = 0;
 let matchedCards = 0;
-let start = true;
+let notTicking = true;
 let endTimer = false;
 let timeFunc;
 let seconds;
@@ -116,10 +116,10 @@ function myTimer() {
         clearInterval(timeFunc);
         return;
     }
-    if (start) {
+    if (notTicking) {
         timeFunc = setInterval(myTimer, 1000);
         seconds = -1;
-        start = false;
+        notTicking = false;
     }
     seconds += 1;
     let secondsStr = String(seconds);
@@ -135,7 +135,7 @@ function myTimer() {
  */
 function displaySymbol(e) {
     "use strict";
-    if (start) {
+    if (notTicking) {
         myTimer();
     }
     if (e.target && e.target.className === "card") {
