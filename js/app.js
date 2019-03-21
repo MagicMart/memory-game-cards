@@ -41,8 +41,7 @@ let starElement;
  */
 function shuffle(a) {
     "use strict";
-    const arr = [...a];
-    return arr.sort(() => 0.5 - Math.random());
+    return [...a].sort(() => 0.5 - Math.random());
 }
 /**
  */
