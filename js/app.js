@@ -53,15 +53,13 @@ function resetGame() {
         document.querySelectorAll(".card")[i].className = "card";
     }
 
-    // Store the shuffled array in a variable
-    const shuffleResult = shuffle(arr);
     // Add the shuffled icons to the page
-    shuffleResult.forEach((element, index) => {
+    shuffle(arr).forEach((element, index) => {
         const card = document.querySelectorAll(".card > i")[index];
         card.className = element;
     });
 
-    cardClick();
+    cardListen();
 }
 
 resetGame();
@@ -73,7 +71,7 @@ document.querySelector(".restart").addEventListener("click", () => {
 // set up event listener for the card
 /**
  */
-function cardClick() {
+function cardListen() {
     "use strict";
     const deck = document.querySelector(".deck");
     deck.addEventListener("click", displaySymbol);
