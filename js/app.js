@@ -157,14 +157,9 @@ function whatSymbol(eventTarget) {
     holdCards(icon, eventTarget);
 }
 /**
- * @param  {string} icon
- * @param  {object} eventTarget
+ *
  */
-function holdCards(icon, eventTarget) {
-    "use strict";
-    openCardsArr.push(icon);
-    openCardsArr.push(eventTarget);
-    // check to see if cards match
+function checkCards() {
     if (openCardsArr.length !== 4) {
         return;
     }
@@ -173,6 +168,18 @@ function holdCards(icon, eventTarget) {
     } else {
         closeCards();
     }
+}
+
+/**
+ * @param  {string} icon
+ * @param  {object} eventTarget
+ */
+function holdCards(icon, eventTarget) {
+    "use strict";
+    openCardsArr.push(icon);
+    openCardsArr.push(eventTarget);
+    // check to see if cards match
+    checkCards();
 }
 /**
  */
