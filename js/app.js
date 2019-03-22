@@ -59,7 +59,7 @@ function resetGame() {
         card.className = element;
     });
 
-    cardListen();
+    deckListen();
 }
 
 resetGame();
@@ -71,7 +71,7 @@ document.querySelector(".restart").addEventListener("click", () => {
 // set up event listener for the card
 /**
  */
-function cardListen() {
+function deckListen() {
     "use strict";
     const deck = document.querySelector(".deck");
     deck.addEventListener("click", displaySymbol);
