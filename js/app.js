@@ -72,12 +72,9 @@
     function deckListen() {
         "use strict";
         const deck = document.querySelector(".deck");
-        deck.addEventListener("click", displaySymbol);
+        deck.addEventListener("click", control);
         // run displaySymbol function when card is clicked
     }
-
-    setCards();
-    deckListen();
 
     /**
      */
@@ -128,51 +125,33 @@
             "0"
         );
     }
-
-    // display the clicked card
     /**
-     * @param  {object} e
+     *
+     * @param {object} e
      */
-    function displaySymbol(e) {
-        "use strict";
-        if (notTicking) {
-            myTimer();
-        }
-        if (heldCards.length === 4) {
-            return;
-        }
-        if (e.target && e.target.className === "card") {
-            e.stopPropagation();
-            const eventTarget = e.target;
-            eventTarget.className = "card open show";
-            moveCounter();
-            whatSymbol(eventTarget);
-        }
+    function openCard(e) {
+        e.stopPropagation();
+        const eventTarget = e.target;
+        eventTarget.className = "card open show";
     }
 
     // Find the symbol that was in the clicked card
     /**
      * @param  {object} eventTarget
+     * @return {string} icon
      */
     function whatSymbol(eventTarget) {
         "use strict";
         const findIcon = eventTarget.querySelector("i");
         const icon = findIcon.className;
         // Send symbol and the event.target data for its card to a function
-        holdCards(icon, eventTarget);
+        return icon;
     }
     /**
-     *
+     * @return{boolean}
      */
     function checkCards() {
-        if (heldCards.length !== 4) {
-            return;
-        }
-        if (heldCards[0] === heldCards[2]) {
-            matchCards();
-        } else {
-            closeCards();
-        }
+        return heldCards[0] === heldCards[2];
     }
 
     /**
@@ -183,8 +162,6 @@
         "use strict";
         heldCards.push(icon);
         heldCards.push(eventTarget);
-        // check to see if cards match
-        checkCards();
     }
     /**
      */
@@ -262,5 +239,37 @@
         playAgain.addEventListener("click", () => {
             location.reload(false);
         });
+    }
+    setCards();
+    deckListen();
+    /**
+     * @param  {object} e
+     */
+    function control(e) {
+        "use strict";
+        const eventTarget = e.target;
+        if (notTicking) {
+            myTimer();
+        }
+        if (heldCards.length === 4) {
+            return;
+        }
+        if (e.target && e.target.className === "card") {
+            openCard(e);
+        } else {
+            return;
+        }
+        moveCounter();
+        const icon = whatSymbol(eventTarget);
+        holdCards(icon, eventTarget);
+        if (heldCards.length === 2) {
+            return;
+        }
+        const match = checkCards();
+        if (match) {
+            matchCards();
+        } else {
+            closeCards();
+        }
     }
 })();
