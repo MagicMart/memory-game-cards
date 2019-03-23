@@ -37,17 +37,17 @@
     let stars = 3;
     let starElement;
     /**
-     * @param  {array} a
+     * @param  {array} arr
      * @return {array}
      */
-    function shuffle(a) {
-        "use strict";
-        return [...a].sort(() => 0.5 - Math.random());
+    function shuffle(arr) {
+        const shuffledArr = [...arr];
+        shuffledArr.sort(() => 0.5 - Math.random());
+        return shuffledArr;
     }
     /**
      */
     function setCards() {
-        "use strict";
         let i;
         // Make sure all cards are closed
         for (i = 0; i < 16; i += 1) {
@@ -55,31 +55,20 @@
         }
 
         // Add the shuffled icons to the page
-        shuffle(arr).forEach((element, index) => {
+        shuffle(arr).forEach(function(element, index) {
             const card = document.querySelectorAll(".card > i")[index];
             card.className = element;
         });
     }
 
     // When the reset button is pressed reload the page
-    document.querySelector(".restart").addEventListener("click", () => {
-        "use strict";
+    document.querySelector(".restart").addEventListener("click", function() {
         location.reload(false);
     });
-    // set up event listener for the card
-    /**
-     */
-    function deckListen() {
-        "use strict";
-        const deck = document.querySelector(".deck");
-        deck.addEventListener("click", control);
-        // run displaySymbol function when card is clicked
-    }
 
     /**
      */
     function minusStar() {
-        "use strict";
         if (stars === 3) {
             starElement = document.querySelectorAll(".stars i")[0];
         }
@@ -93,22 +82,14 @@
     /**
      */
     function moveCounter() {
-        "use strict";
         moves += 1;
         let movesStr = String(moves);
         const moveElement = document.querySelector(".moves");
         moveElement.textContent = movesStr.padStart(3, "0");
-        if (moves === 32) {
-            minusStar();
-        }
-        if (moves === 64) {
-            minusStar();
-        }
     }
     /**
      */
     function myTimer() {
-        "use strict";
         if (endTimer) {
             clearInterval(timeFunc);
             return;
@@ -140,11 +121,9 @@
      * @param  {object} eventTarget
      * @return {string} icon
      */
-    function whatSymbol(eventTarget) {
-        "use strict";
+    function getSymbol(eventTarget) {
         const findIcon = eventTarget.querySelector("i");
         const icon = findIcon.className;
-        // Send symbol and the event.target data for its card to a function
         return icon;
     }
     /**
@@ -159,33 +138,25 @@
      * @param  {object} eventTarget
      */
     function holdCards(icon, eventTarget) {
-        "use strict";
         heldCards.push(icon);
         heldCards.push(eventTarget);
     }
     /**
      */
     function matchCards() {
-        "use strict";
         heldCards[1].className = "card open match";
         heldCards[3].className = "card open match";
         heldCards = [];
         matchedCards += 1;
-        if (matchedCards === 8) {
-            win();
-        }
     }
     /**
      */
     function closeCards() {
-        "use strict";
         const eventTarget1 = heldCards[1];
         const eventTarget2 = heldCards[3];
         eventTarget1.id = "incorrect";
         eventTarget2.id = "incorrect";
-        setTimeout(pause, 200);
-        /**
-         */
+        /** */
         function pause() {
             eventTarget1.id = "";
             eventTarget2.id = "";
@@ -193,10 +164,10 @@
             eventTarget2.className = "card";
             heldCards = [];
         }
+        setTimeout(pause, 200);
     }
-    /** win function Adapted from https://www.w3schools.com/howto/howto_css_modals.asp */
+    /** */
     function win() {
-        "use strict";
         endTimer = true;
         // Get the modal
         const modal = document.getElementById("myModal");
@@ -236,17 +207,14 @@
         starsModal.textContent = stars;
 
         // Page reloads when user clicks play again button
-        playAgain.addEventListener("click", () => {
+        playAgain.addEventListener("click", function() {
             location.reload(false);
         });
     }
-    setCards();
-    deckListen();
     /**
      * @param  {object} e
      */
     function control(e) {
-        "use strict";
         const eventTarget = e.target;
         if (notTicking) {
             myTimer();
@@ -259,17 +227,37 @@
         } else {
             return;
         }
-        moveCounter();
-        const icon = whatSymbol(eventTarget);
+        const icon = getSymbol(eventTarget);
         holdCards(icon, eventTarget);
         if (heldCards.length === 2) {
             return;
+        }
+        moveCounter();
+        if (moves === 16) {
+            minusStar();
+        }
+        if (moves === 32) {
+            minusStar();
         }
         const match = checkCards();
         if (match) {
             matchCards();
         } else {
             closeCards();
+            return;
+        }
+        if (matchedCards === 8) {
+            win();
         }
     }
+    // set up event listener for the card
+    /**
+     */
+    function deckListen() {
+        const deck = document.querySelector(".deck");
+        deck.addEventListener("click", control);
+        // run displaySymbol function when card is clicked
+    }
+    setCards();
+    deckListen();
 })();
