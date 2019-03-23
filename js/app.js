@@ -45,7 +45,7 @@ function shuffle(a) {
 }
 /**
  */
-function resetGame() {
+function setCards() {
     "use strict";
     let i;
     // Make sure all cards are closed
@@ -58,11 +58,8 @@ function resetGame() {
         const card = document.querySelectorAll(".card > i")[index];
         card.className = element;
     });
-
-    deckListen();
 }
 
-resetGame();
 // When the reset button is pressed reload the page
 document.querySelector(".restart").addEventListener("click", () => {
     "use strict";
@@ -77,6 +74,10 @@ function deckListen() {
     deck.addEventListener("click", displaySymbol);
     // run displaySymbol function when card is clicked
 }
+
+setCards();
+deckListen();
+
 /**
  */
 function minusStar() {
