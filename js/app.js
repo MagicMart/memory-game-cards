@@ -26,7 +26,7 @@ const arr = [
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-let openCardsArr = [];
+let heldCards = [];
 let moves = 0;
 let matchedCards = 0;
 let notTicking = true;
@@ -160,10 +160,10 @@ function whatSymbol(eventTarget) {
  *
  */
 function checkCards() {
-    if (openCardsArr.length !== 4) {
+    if (heldCards.length !== 4) {
         return;
     }
-    if (openCardsArr[0] === openCardsArr[2]) {
+    if (heldCards[0] === heldCards[2]) {
         matchCards();
     } else {
         closeCards();
@@ -176,8 +176,8 @@ function checkCards() {
  */
 function holdCards(icon, eventTarget) {
     "use strict";
-    openCardsArr.push(icon);
-    openCardsArr.push(eventTarget);
+    heldCards.push(icon);
+    heldCards.push(eventTarget);
     // check to see if cards match
     checkCards();
 }
@@ -185,9 +185,9 @@ function holdCards(icon, eventTarget) {
  */
 function matchCards() {
     "use strict";
-    openCardsArr[1].className = "card open match";
-    openCardsArr[3].className = "card open match";
-    openCardsArr = [];
+    heldCards[1].className = "card open match";
+    heldCards[3].className = "card open match";
+    heldCards = [];
     matchedCards += 1;
     if (matchedCards === 8) {
         win();
@@ -197,8 +197,8 @@ function matchCards() {
  */
 function closeCards() {
     "use strict";
-    const eventTarget1 = openCardsArr[1];
-    const eventTarget2 = openCardsArr[3];
+    const eventTarget1 = heldCards[1];
+    const eventTarget2 = heldCards[3];
     eventTarget1.id = "incorrect";
     eventTarget2.id = "incorrect";
     // Remove event listener on the deck
@@ -213,7 +213,7 @@ function closeCards() {
         eventTarget2.id = "";
         eventTarget1.className = "card";
         eventTarget2.className = "card";
-        openCardsArr = [];
+        heldCards = [];
         // Reintroduce the event listener on deck
         // now that the matched cards have been shown
         deck.addEventListener("click", displaySymbol);
