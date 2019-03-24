@@ -94,6 +94,10 @@ h1 {
     font-size: 33px;
 }
 
+.card > i {
+    font-size: 35px;
+}
+
 #incorrect {
     background: red;
 }
