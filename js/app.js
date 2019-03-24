@@ -47,25 +47,34 @@
     /**
      */
     function setCards() {
+        heldCards = [];
+        moves = 0;
+        matchedCards = 0;
+        notTicking = true;
+        endTimer = false;
+        timeFunc && clearInterval(timeFunc);
+        seconds = 0;
+        stars = 3;
+        document.querySelector(".moves").textContent = "000";
+        document.querySelector(".seconds").textContent = "000";
         let i;
         // Make sure all cards are closed
         for (i = 0; i < 16; i += 1) {
             document.querySelectorAll(".card")[i].className = "card";
         }
-        const stars = document.querySelectorAll(".stars i");
-        stars.forEach((star) => (star.style.color = "gold"));
+        const starsEl = document.querySelectorAll(".stars i");
+        starsEl.forEach((star) => (star.style.color = "gold"));
 
         // Add the shuffled icons to the page
         shuffle(arr).forEach(function(element, index) {
             const card = document.querySelectorAll(".card > i")[index];
             card.className = element;
         });
+        document.querySelector(".deck").addEventListener("click", control);
+        document
+            .querySelector(".restart")
+            .addEventListener("click", setCards, {once: true});
     }
-
-    // When the reset button is pressed reload the page
-    document.querySelector(".restart").addEventListener("click", function() {
-        location.reload(false);
-    });
 
     /**
      */
@@ -169,6 +178,7 @@
     }
     /** */
     function win() {
+        document.querySelector(".deck").removeEventListener("click", control);
         endTimer = true;
         // Get the modal
         const modal = document.getElementById("myModal");
@@ -176,21 +186,24 @@
         // Get the <span> element that closes the modal
         const span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal
-
         modal.style.display = "block";
+        /** */
+        function displayNone() {
+            modal.style.display = "none";
+        }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        };
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
+        span.addEventListener("click", displayNone, {once: true});
+        /**
+         * @param {object} event
+         */
+        function windowClick(event) {
             if (event.target === modal) {
                 modal.style.display = "none";
             }
-        };
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.addEventListener("click", (e) => windowClick(e), {once: true});
 
         // Get the moves-modal span
         const movesModal = document.querySelector(".moves-modal");
@@ -206,11 +219,14 @@
         movesModal.textContent = moves;
         secondsModal.textContent = seconds;
         starsModal.textContent = stars;
+        /** */
+        function restart() {
+            modal.style.display = "none";
+            setCards();
+        }
 
         // Page reloads when user clicks play again button
-        playAgain.addEventListener("click", function() {
-            location.reload(false);
-        });
+        playAgain.addEventListener("click", restart, {once: true});
     }
     /**
      * @param  {object} e
@@ -251,14 +267,6 @@
             win();
         }
     }
-    // set up event listener for the card
-    /**
-     */
-    function deckListen() {
-        const deck = document.querySelector(".deck");
-        deck.addEventListener("click", control);
-        // run displaySymbol function when card is clicked
-    }
+
     setCards();
-    deckListen();
 })();
