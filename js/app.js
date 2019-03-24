@@ -174,7 +174,7 @@
             eventTarget2.className = "card";
             heldCards = [];
         }
-        setTimeout(pause, 200);
+        setTimeout(pause, 600);
     }
     /** */
     function win() {
