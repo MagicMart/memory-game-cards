@@ -35,7 +35,6 @@
     let timeFunc;
     let seconds;
     let stars = 3;
-    let starElement;
     /**
      * @param  {array} arr
      * @return {array}
@@ -53,6 +52,8 @@
         for (i = 0; i < 16; i += 1) {
             document.querySelectorAll(".card")[i].className = "card";
         }
+        const stars = document.querySelectorAll(".stars i");
+        stars.forEach((star) => (star.style.color = "gold"));
 
         // Add the shuffled icons to the page
         shuffle(arr).forEach(function(element, index) {
@@ -69,14 +70,14 @@
     /**
      */
     function minusStar() {
+        let starElement;
         if (stars === 3) {
             starElement = document.querySelectorAll(".stars i")[0];
         }
         if (stars === 2) {
             starElement = document.querySelectorAll(".stars i")[1];
         }
-        starElement.className = "";
-        starElement.textContent = "_";
+        starElement.style.color = "black";
         stars -= 1;
     }
     /**
