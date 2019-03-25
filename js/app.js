@@ -121,9 +121,7 @@
      * @param {object} e
      */
     function openCard(e) {
-        e.stopPropagation();
-        const eventTarget = e.target;
-        eventTarget.className = "card open show";
+        e.target.className = "card open show";
     }
 
     // Find the symbol that was in the clicked card
@@ -142,7 +140,6 @@
     function checkCards() {
         return heldCards[0] === heldCards[2];
     }
-
     /**
      * @param  {string} icon
      * @param  {object} eventTarget
