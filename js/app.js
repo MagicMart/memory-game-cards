@@ -148,8 +148,7 @@
      * @param  {object} eventTarget
      */
     function holdCards(icon, eventTarget) {
-        heldCards.push(icon);
-        heldCards.push(eventTarget);
+        heldCards = [...heldCards, icon, eventTarget];
     }
     /**
      */
