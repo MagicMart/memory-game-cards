@@ -161,19 +161,11 @@
     /**
      */
     function closeCards() {
-        const eventTarget1 = heldCards[1];
-        const eventTarget2 = heldCards[3];
-        eventTarget1.id = "incorrect";
-        eventTarget2.id = "incorrect";
-        /** */
-        function pause() {
-            eventTarget1.id = "";
-            eventTarget2.id = "";
-            eventTarget1.className = "card";
-            eventTarget2.className = "card";
+        setTimeout(function pause() {
+            heldCards[1].className = "card";
+            heldCards[3].className = "card";
             heldCards = [];
-        }
-        setTimeout(pause, 600);
+        }, 600);
     }
     /** */
     function win() {
