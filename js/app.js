@@ -27,14 +27,7 @@
      *   - loop through each card and create its HTML
      *   - add each card's HTML to the page
      */
-    let heldCards = [];
-    let moves = 0;
-    let matchedCards = 0;
-    let notTicking = true;
-    let endTimer = false;
-    let timeFunc;
-    let seconds;
-    let stars = 3;
+    let state = {};
     /**
      * @param  {array} arr
      * @return {array}
@@ -47,14 +40,14 @@
     /**
      */
     function setCards() {
-        heldCards = [];
-        moves = 0;
-        matchedCards = 0;
-        notTicking = true;
-        endTimer = false;
-        timeFunc && clearInterval(timeFunc);
-        seconds = 0;
-        stars = 3;
+        state.heldCards = [];
+        state.moves = 0;
+        state.matchedCards = 0;
+        state.notTicking = true;
+        state.endTimer = false;
+        state.timeFunc && clearInterval(state.timeFunc);
+        state.seconds = 0;
+        state.stars = 3;
         document.querySelector(".moves").textContent = "000";
         document.querySelector(".seconds").textContent = "000";
         let i;
@@ -80,37 +73,37 @@
      */
     function minusStar() {
         let starElement;
-        if (stars === 3) {
+        if (state.stars === 3) {
             starElement = document.querySelectorAll(".stars i")[0];
         }
-        if (stars === 2) {
+        if (state.stars === 2) {
             starElement = document.querySelectorAll(".stars i")[1];
         }
         starElement.style.color = "black";
-        stars -= 1;
+        state.stars -= 1;
     }
     /**
      */
     function moveCounter() {
-        moves += 1;
-        let movesStr = String(moves);
+        state.moves += 1;
+        let movesStr = String(state.moves);
         const moveElement = document.querySelector(".moves");
         moveElement.textContent = movesStr.padStart(3, "0");
     }
     /**
      */
     function myTimer() {
-        if (endTimer) {
-            clearInterval(timeFunc);
+        if (state.endTimer) {
+            clearInterval(state.timeFunc);
             return;
         }
-        if (notTicking) {
-            timeFunc = setInterval(myTimer, 1000);
-            seconds = -1;
-            notTicking = false;
+        if (state.notTicking) {
+            state.timeFunc = setInterval(myTimer, 1000);
+            state.seconds = -1;
+            state.notTicking = false;
         }
-        seconds += 1;
-        let secondsStr = String(seconds);
+        state.seconds += 1;
+        let secondsStr = String(state.seconds);
         document.querySelector(".seconds").textContent = secondsStr.padStart(
             3,
             "0"
@@ -138,36 +131,36 @@
      * @return{boolean}
      */
     function checkCards() {
-        return heldCards[0] === heldCards[2];
+        return state.heldCards[0] === state.heldCards[2];
     }
     /**
      * @param  {string} icon
      * @param  {object} eventTarget
      */
     function holdCards(icon, eventTarget) {
-        heldCards = [...heldCards, icon, eventTarget];
+        state.heldCards = [...state.heldCards, icon, eventTarget];
     }
     /**
      */
     function matchCards() {
-        heldCards[1].className = "card open match";
-        heldCards[3].className = "card open match";
-        heldCards = [];
-        matchedCards += 1;
+        state.heldCards[1].className = "card open match";
+        state.heldCards[3].className = "card open match";
+        state.heldCards = [];
+        state.matchedCards += 1;
     }
     /**
      */
     function closeCards() {
         setTimeout(function pause() {
-            heldCards[1].className = "card";
-            heldCards[3].className = "card";
-            heldCards = [];
+            state.heldCards[1].className = "card";
+            state.heldCards[3].className = "card";
+            state.heldCards = [];
         }, 600);
     }
     /** */
     function win() {
         document.querySelector(".deck").removeEventListener("click", control);
-        endTimer = true;
+        state.endTimer = true;
         // Get the modal
         const modal = document.getElementById("myModal");
 
@@ -204,9 +197,9 @@
 
         // Get play again class
         const playAgain = document.querySelector(".play-again");
-        movesModal.textContent = moves;
-        secondsModal.textContent = seconds;
-        starsModal.textContent = stars;
+        movesModal.textContent = state.moves;
+        secondsModal.textContent = state.seconds;
+        starsModal.textContent = state.stars;
         /** */
         function restart() {
             modal.style.display = "none";
@@ -221,10 +214,10 @@
      */
     function control(e) {
         const eventTarget = e.target;
-        if (notTicking) {
+        if (state.notTicking) {
             myTimer();
         }
-        if (heldCards.length === 4) {
+        if (state.heldCards.length === 4) {
             return;
         }
         if (e.target && e.target.className === "card") {
@@ -234,14 +227,14 @@
         }
         const icon = getSymbol(eventTarget);
         holdCards(icon, eventTarget);
-        if (heldCards.length === 2) {
+        if (state.heldCards.length === 2) {
             return;
         }
         moveCounter();
-        if (moves === 16) {
+        if (state.moves === 16) {
             minusStar();
         }
-        if (moves === 32) {
+        if (state.moves === 32) {
             minusStar();
         }
         const match = checkCards();
@@ -251,7 +244,7 @@
             closeCards();
             return;
         }
-        if (matchedCards === 8) {
+        if (state.matchedCards === 8) {
             win();
         }
     }
