@@ -54,15 +54,18 @@
         const starsEl = document.querySelectorAll(".stars i");
         starsEl.forEach((star) => (star.style.color = "gold"));
 
-        // Add the shuffled icons to the page
-        shuffle(arr).forEach(function(element, index) {
-            const card = document.querySelectorAll(".card > i")[index];
-            card.className = element;
-        });
-        document.querySelector(".deck").addEventListener("click", control);
-        document
-            .querySelector(".restart")
-            .addEventListener("click", setCards, {once: true});
+        // setTimeout: make sure freshly shuffled cards aren't
+        // briefly revealed before being closed on a restart
+        setTimeout(() => {
+            shuffle(arr).forEach(function(element, index) {
+                const card = document.querySelectorAll(".card > i")[index];
+                card.className = element;
+            });
+            document.querySelector(".deck").addEventListener("click", control);
+            document
+                .querySelector(".restart")
+                .addEventListener("click", setCards, {once: true});
+        }, 200);
     }
 
     /**
