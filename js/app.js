@@ -33,9 +33,7 @@
      * @return {array}
      */
     function shuffle(arr) {
-        const shuffledArr = [...arr];
-        shuffledArr.sort(() => 0.5 - Math.random());
-        return shuffledArr;
+        return [...arr].sort(() => 0.5 - Math.random());
     }
     /**
      */
