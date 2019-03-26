@@ -44,7 +44,7 @@
         state.moves = 0;
         state.matchedCards = 0;
         state.timeFunc && clearInterval(state.timeFunc);
-        state.seconds = 0;
+        state.seconds = -1;
         state.stars = 3;
         document.querySelector(".moves").textContent = "000";
         document.querySelector(".seconds").textContent = "000";
@@ -96,7 +96,7 @@
             clearInterval(state.timeFunc);
             return;
         }
-        if (state.seconds === 0) {
+        if (state.seconds === -1) {
             state.timeFunc = setInterval(myTimer, 1000);
         }
         state.seconds += 1;
@@ -211,7 +211,7 @@
      */
     function control(e) {
         const eventTarget = e.target;
-        if (state.seconds === 0) {
+        if (state.seconds === -1) {
             myTimer();
         }
         if (state.heldCards.length === 4) {
