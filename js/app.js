@@ -43,8 +43,6 @@
         state.heldCards = [];
         state.moves = 0;
         state.matchedCards = 0;
-        state.notTicking = true;
-        state.endTimer = false;
         state.timeFunc && clearInterval(state.timeFunc);
         state.seconds = 0;
         state.stars = 3;
@@ -91,16 +89,15 @@
         moveElement.textContent = movesStr.padStart(3, "0");
     }
     /**
+     * @param{boolean} tick
      */
-    function myTimer() {
-        if (state.endTimer) {
+    function myTimer(tick = true) {
+        if (!tick) {
             clearInterval(state.timeFunc);
             return;
         }
-        if (state.notTicking) {
+        if (state.seconds === 0) {
             state.timeFunc = setInterval(myTimer, 1000);
-            state.seconds = -1;
-            state.notTicking = false;
         }
         state.seconds += 1;
         let secondsStr = String(state.seconds);
@@ -160,7 +157,7 @@
     /** */
     function win() {
         document.querySelector(".deck").removeEventListener("click", control);
-        state.endTimer = true;
+        myTimer(false);
         // Get the modal
         const modal = document.getElementById("myModal");
 
@@ -214,7 +211,7 @@
      */
     function control(e) {
         const eventTarget = e.target;
-        if (state.notTicking) {
+        if (state.seconds === 0) {
             myTimer();
         }
         if (state.heldCards.length === 4) {
