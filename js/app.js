@@ -118,9 +118,7 @@
      * @return {string} icon
      */
     function getSymbol(eventTarget) {
-        const findIcon = eventTarget.querySelector("i");
-        const icon = findIcon.className;
-        return icon;
+        return eventTarget.querySelector("i").className;
     }
     /**
      * @return{boolean}
