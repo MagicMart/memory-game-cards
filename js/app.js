@@ -216,7 +216,7 @@
         if (state.heldCards.length === 4) {
             return;
         }
-        if (e.target && e.target.className === "card") {
+        if (eventTarget && eventTarget.className === "card") {
             openCard(e);
         } else {
             return;
@@ -227,10 +227,7 @@
             return;
         }
         moveCounter();
-        if (state.moves === 16) {
-            minusStar();
-        }
-        if (state.moves === 32) {
+        if (state.moves === 16 || state.moves === 32) {
             minusStar();
         }
         const match = checkCards();
