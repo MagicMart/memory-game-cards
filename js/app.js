@@ -48,19 +48,19 @@
         document.querySelector(".seconds").textContent = "000";
         let i;
         // Make sure all cards are closed
-        const cardsToClose = document.querySelectorAll(".card");
+        const cards = document.querySelectorAll(".card");
         for (i = 0; i < 16; i += 1) {
-            cardsToClose[i].className = "card";
+            cards[i].className = "card";
         }
         const starsEl = document.querySelectorAll(".stars i");
         starsEl.forEach((star) => (star.style.color = "gold"));
 
         // setTimeout: make sure freshly shuffled cards aren't
         // briefly revealed before being closed on a restart
-        const card = document.querySelectorAll(".card > i");
+        const icons = document.querySelectorAll(".card > i");
         setTimeout(() => {
             shuffle(arr).forEach((element, index) => {
-                card[index].className = element;
+                icons[index].className = element;
             });
             document.querySelector(".deck").addEventListener("click", control);
             document
