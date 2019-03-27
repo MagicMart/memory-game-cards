@@ -75,8 +75,7 @@
         let starElement;
         if (state.stars === 3) {
             starElement = document.querySelectorAll(".stars i")[0];
-        }
-        if (state.stars === 2) {
+        } else if (state.stars === 2) {
             starElement = document.querySelectorAll(".stars i")[1];
         }
         starElement.style.color = "black";
