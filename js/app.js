@@ -1,7 +1,4 @@
 (function() {
-    /*
-     * Create a list that holds all of your cards
-     */
     const arr = [
         "fa fa-diamond",
         "fa fa-paper-plane-o",
@@ -21,12 +18,6 @@
         "fa fa-bomb"
     ];
 
-    /*
-     * Display the cards on the page
-     *   - shuffle the list of cards using the provided "shuffle" method below
-     *   - loop through each card and create its HTML
-     *   - add each card's HTML to the page
-     */
     let state = {};
     /**
      * @param  {array} arr
