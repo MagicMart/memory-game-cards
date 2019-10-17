@@ -1,3 +1,5 @@
+// @ts-check
+
 (function() {
     const arr = [
         "fa fa-diamond",
@@ -19,15 +21,16 @@
     ];
 
     let state = {};
+
     /**
-     * @param  {array} arr
-     * @return {array}
+     * Shuffle the card names
+     * @param  {Array<string>} arr
+     * @return {Array<string>} the shuffled cards
      */
     function shuffle(arr) {
         return [...arr].sort(() => 0.5 - Math.random());
     }
-    /**
-     */
+
     function setCards() {
         state.heldCards = [];
         state.moves = 0;
@@ -37,14 +40,16 @@
         state.stars = 3;
         document.querySelector(".moves").textContent = "000";
         document.querySelector(".seconds").textContent = "000";
-        let i;
+
         // Make sure all cards are closed
         const cards = document.querySelectorAll(".card");
-        for (i = 0; i < 16; i += 1) {
-            cards[i].className = "card";
-        }
+        Array.from(cards).forEach(card => (card.className = "card"));
+        /**@type {NodeList} */
         const starsEl = document.querySelectorAll(".stars i");
-        starsEl.forEach((star) => (star.style.color = "gold"));
+        starsEl.forEach(
+            /** @param {HTMLElement} star*/
+            star => (star.style.color = "gold")
+        );
 
         // setTimeout: make sure freshly shuffled cards aren't
         // briefly revealed before being closed on a restart
@@ -60,28 +65,28 @@
         }, 200);
     }
 
-    /**
-     */
     function minusStar() {
-        let starElement;
+        let index;
         if (state.stars === 3) {
-            starElement = document.querySelectorAll(".stars i")[0];
+            index = 0;
         } else if (state.stars === 2) {
-            starElement = document.querySelectorAll(".stars i")[1];
+            index = 1;
         }
+        const starElement = document.querySelectorAll(".stars i")[index];
+        // @ts-ignore
         starElement.style.color = "black";
         state.stars -= 1;
     }
-    /**
-     */
+
     function moveCounter() {
         state.moves += 1;
         let movesStr = String(state.moves);
         const moveElement = document.querySelector(".moves");
+        // @ts-ignore
         moveElement.textContent = movesStr.padStart(3, "0");
     }
     /**
-     * @param{boolean} tick
+     * @param {boolean} tick
      */
     function myTimer(tick = true) {
         if (!tick) {
@@ -93,30 +98,28 @@
         }
         state.seconds += 1;
         let secondsStr = String(state.seconds);
+        // @ts-ignore
         document.querySelector(".seconds").textContent = secondsStr.padStart(
             3,
             "0"
         );
     }
     /**
-     *
      * @param {object} e
      */
     function openCard(e) {
         e.target.className = "card open show";
     }
 
-    // Find the symbol that was in the clicked card
     /**
+     * Find the symbol that was in the clicked card
      * @param  {object} eventTarget
      * @return {string} icon
      */
     function getSymbol(eventTarget) {
         return eventTarget.querySelector("i").className;
     }
-    /**
-     * @return{boolean}
-     */
+
     function checkCards() {
         return state.heldCards[0] === state.heldCards[2];
     }
@@ -127,16 +130,14 @@
     function holdCards(icon, eventTarget) {
         state.heldCards = [...state.heldCards, icon, eventTarget];
     }
-    /**
-     */
+
     function matchCards() {
         state.heldCards[1].className = "card open match";
         state.heldCards[3].className = "card open match";
         state.heldCards = [];
         state.matchedCards += 1;
     }
-    /**
-     */
+
     function closeCards() {
         setTimeout(function pause() {
             state.heldCards[1].className = "card";
@@ -144,7 +145,7 @@
             state.heldCards = [];
         }, 600);
     }
-    /** */
+
     function win() {
         document.querySelector(".deck").removeEventListener("click", control);
         myTimer(false);
@@ -171,7 +172,7 @@
             }
         }
         // When the user clicks anywhere outside of the modal, close it
-        window.addEventListener("click", (e) => windowClick(e), {once: true});
+        window.addEventListener("click", e => windowClick(e), {once: true});
 
         // Get the moves-modal span
         const movesModal = document.querySelector(".moves-modal");
